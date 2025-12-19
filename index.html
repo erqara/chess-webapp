@@ -24,25 +24,32 @@ h1 {
   margin: 10px 0;
 }
 
-#board {
+/* 👇 ВАЖНО: ограничиваем слой доски */
+#board-wrapper {
   width: 90vw;
   max-width: 420px;
+  position: relative;
+  z-index: 1;
 }
 
+#board {
+  width: 100%;
+}
+
+/* 👇 Кнопка ВСЕГДА выше доски */
 .buttons {
-  margin-top: 12px;
+  margin-top: 14px;
+  z-index: 10;
 }
 
 button {
   background: #2563eb;
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
+  padding: 14px 22px;
+  border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-  position: relative;
-  z-index: 9999;
 }
 </style>
 </head>
@@ -50,7 +57,9 @@ button {
 <body>
 <h1>♟ Шахматы Ш.Е.Р</h1>
 
-<div id="board"></div>
+<div id="board-wrapper">
+  <div id="board"></div>
+</div>
 
 <div class="buttons">
   <button id="newGameBtn">🔄 Новая игра</button>
@@ -72,7 +81,6 @@ let board = Chessboard('board', {
     if (move === null) return 'snapback';
   }
 });
-
 
 document.getElementById("newGameBtn").addEventListener("click", function () {
   game.reset();
