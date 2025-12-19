@@ -2,89 +2,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Шахматы Ш.Е.Р</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="https://unpkg.com/chessboardjs/dist/chessboard-1.0.0.min.css">
-<script src="https://unpkg.com/chess.js"></script>
-<script src="https://unpkg.com/chessboardjs"></script>
+<title>TEST BUTTON</title>
 
 <style>
 body {
-  margin: 0;
   background: #0f172a;
   color: white;
-  font-family: system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-h1 {
-  margin: 10px 0;
-}
-
-/* 👇 ВАЖНО: ограничиваем слой доски */
-#board-wrapper {
-  width: 90vw;
-  max-width: 420px;
-  position: relative;
-  z-index: 1;
-}
-
-#board {
-  width: 100%;
-}
-
-/* 👇 Кнопка ВСЕГДА выше доски */
-.buttons {
-  margin-top: 14px;
-  z-index: 10;
+  justify-content: center;
+  height: 100vh;
+  font-family: sans-serif;
 }
 
 button {
-  background: #2563eb;
-  color: white;
+  padding: 20px 30px;
+  font-size: 18px;
   border: none;
-  padding: 14px 22px;
   border-radius: 12px;
-  font-size: 16px;
+  background: #22c55e;
+  color: black;
   cursor: pointer;
 }
 </style>
 </head>
 
 <body>
-<h1>♟ Шахматы Ш.Е.Р</h1>
 
-<div id="board-wrapper">
-  <div id="board"></div>
-</div>
+<h2>ТЕСТ КНОПКИ</h2>
 
-<div class="buttons">
-  <button id="newGameBtn">🔄 Новая игра</button>
-</div>
+<button id="testBtn">НАЖМИ МЕНЯ</button>
 
 <script>
-let game = new Chess();
-
-let board = Chessboard('board', {
-  draggable: true,
-  position: 'start',
-  animation: true,
-  onDrop: function (from, to) {
-    let move = game.move({
-      from: from,
-      to: to,
-      promotion: 'q'
-    });
-    if (move === null) return 'snapback';
-  }
-});
-
-document.getElementById("newGameBtn").addEventListener("click", function () {
-  game.reset();
-  board.position("start");
+document.getElementById("testBtn").addEventListener("click", function () {
+  alert("КНОПКА 100% РАБОТАЕТ");
 });
 </script>
 
