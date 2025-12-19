@@ -30,18 +30,19 @@ h1 {
 }
 
 .buttons {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
+  margin-top: 12px;
 }
 
 button {
   background: #2563eb;
   color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
   font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
 }
 </style>
 </head>
@@ -52,7 +53,7 @@ button {
 <div id="board"></div>
 
 <div class="buttons">
-  <button onclick="resetGame()">🔄 Новая</button>
+  <button id="newGameBtn">🔄 Новая игра</button>
 </div>
 
 <script>
@@ -62,7 +63,7 @@ let board = Chessboard('board', {
   draggable: true,
   position: 'start',
   animation: true,
-  onDrop: (from, to) => {
+  onDrop: function (from, to) {
     let move = game.move({
       from: from,
       to: to,
@@ -72,10 +73,11 @@ let board = Chessboard('board', {
   }
 });
 
-function resetGame(){
+
+document.getElementById("newGameBtn").addEventListener("click", function () {
   game.reset();
-  board.position('start');
-}
+  board.position("start");
+});
 </script>
 
 </body>
