@@ -3,11 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <title>Шахматы Ш.Е.Р</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/chessboardjs/dist/chessboard-1.0.0.min.css">
+<script src="https://unpkg.com/chess.js"></script>
+<script src="https://unpkg.com/chessboardjs"></script>
+
+<style>
+body {
+  margin: 0;
+  background: #0f172a;
+  color: white;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+#board {
+  width: 90vw;
+  max-width: 420px;
+}
+
+.buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+</style>
 </head>
 
-<body style="background:#0f172a;color:white;text-align:center">
+<body>
 <h1>♟ Шахматы Ш.Е.Р</h1>
-<p>Web App работает 🎉</p>
-<p>Скоро здесь будет шахматы и шашки</p>
+
+<div id="board"></div>
+
+<div class="buttons">
+  <button onclick="resetGame()">🔄 Новая</button>
+</div>
+
+<script>
+let game = new Chess();
+
+let board = Chessboard('board', {
+  draggable: true,
+  position: 'start',
+  animation: true,
+  onDrop: (from, to) => {
+    let move = game.move({
+      from: from,
+      to: to,
+      promotion: 'q'
+    });
+    if (move === null) return 'snapback';
+  }
+});
+
+function resetGame(){
+  game.reset();
+  board.position('start');
+}
+</script>
+
 </body>
 </html>
